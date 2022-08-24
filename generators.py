@@ -15,6 +15,5 @@ if __name__ == '__main__':
         None
     ]
 
-    qw = flat_generator(nested_list)
-    for q in qw:
-        print(q)
+    for item in flat_generator(nested_list):
+        print(item)
