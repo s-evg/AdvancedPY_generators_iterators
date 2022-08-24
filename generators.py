@@ -1,20 +1,10 @@
 def flat_generator(nested_list):
-
-    new_list = []
-    for i in nested_list:
-        if type(i) is not list:
-            new_list.append(i)
+    for item in nested_list:
+        if isinstance(item, list):
+            for sub_elem in flat_generator(item):
+                yield sub_elem
         else:
-            for _ in i:
-                new_list.append(_)
-
-    return new_list
-
-def flat_com(nested_list):
-
-    new_list = []
-    data = [[new_list.append(item) if type(item) is not list else [new_list.append(_) for _ in item]]  for item in nested_list]
-    return new_list
+            yield item
 
 if __name__ == '__main__':
     nested_list = [
@@ -24,11 +14,7 @@ if __name__ == '__main__':
         17,
         None
     ]
-    data = flat_generator(nested_list)
-    for i in data:
-        print(i)
 
-    data_com = flat_com(nested_list)
-    print(data_com)
-    for i in data_com:
-        print(i)
+    qw = flat_generator(nested_list)
+    for q in qw:
+        print(q)
